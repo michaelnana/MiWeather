@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <link rel="stylesheet" href="/styles/main.min.css">
+  <link rel="stylesheet" href="/styles/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <body data-ng-app="app" data-ng-controller="dashboardController as dashboard" data-ng-init="dashboard.init()">
+    <div data-ng-include="'/views/header.html'"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+              <input type="text" class="form-control" placeholder="Search for a city and get the weather" data-ng-model="dashboard.weatherCity">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" data-ng-click="dashboard.searchWeather()">Search</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/app/app.js"></script>
+    <script src="/app/controllers/dashboard.controller.js"></script>
+  </body>
+</head>
+</html>
