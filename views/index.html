@@ -7,8 +7,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.14/highmaps.js"></script>
   <link rel="stylesheet" href="/styles/main.min.css">
   <link rel="stylesheet" href="/styles/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.14/css/highcharts.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <body data-ng-app="app" data-ng-controller="dashboardController as dashboard" data-ng-init="dashboard.init()">
@@ -19,7 +22,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-search"></i></span>
-              <input type="text" class="form-control" placeholder="Search for a city and get the weather" data-ng-model="dashboard.weatherCity">
+              <input type="text" class="form-control" placeholder="Search for a city and get the weather" data-ng-model="dashboard.city">
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" data-ng-click="dashboard.searchWeather()">Search</button>
               </span>
@@ -27,8 +30,62 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>{{dashboard.cityWeeklyDetails.name}}, {{dashboard.cityWeeklyDetails.country}}</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Average Pressure for the week: {{dashboard.cityWeeklyDetails.pressure | decimalPlaces}} millibars</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div data-ng-repeat="forecast in dashboard.forecast" class="col-md-2">
+            <div class="panel panel-primary">
+            <div class="panel-heading">
+              {{forecast.dt | dateFormat}}
+            </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    {{forecast.weather[0].main}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {{forecast.weather[0].description}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {{forecast.temp.max | tempFilter}} High
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <div class="col-md-12">
+                    {{forecast.temp.min | tempFilter}} Low
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="weather-chart">
+          </div>
+        </div>
+      </div>
     </div>
     <script src="/app/app.js"></script>
+    <script src="/app/factories/weather.factory.js"></script>
+    <script src="/app/filters/date.filter.js"></script>
+    <script src="/app/filters/decimal-places.filter.js"></script>
+    <script src="/app/filters/temp.filter.js"></script>
     <script src="/app/controllers/dashboard.controller.js"></script>
   </body>
 </head>
