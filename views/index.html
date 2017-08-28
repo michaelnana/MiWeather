@@ -40,12 +40,14 @@
           <h5>Average Pressure for the week: {{dashboard.cityWeeklyDetails.pressure | decimalPlaces}} millibars</h5>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div data-ng-repeat="forecast in dashboard.forecast" class="col-md-2">
+      <div>
+      <div style="width: 100%; height: 250px;">
+        <div style="width: 100%; height: 100%; overflow-x: visible; overflow-y: hidden; white-space: nowrap; display: block">
+          <div data-ng-repeat="forecast in dashboard.forecast" style="display: inline-block; height: 100%; width: 200px; padding-left: 10px;">
             <div class="panel panel-primary">
             <div class="panel-heading">
-              {{forecast.dt | dateFormat}}
+              <span class="weather-panel-title">{{forecast.dt | dateFormat}}</span>
+              <span class="pull-right">{{forecast.temp.day | tempFilter}}</span>
             </div>
               <div class="panel-body">
                 <div class="row">
@@ -55,18 +57,18 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    {{forecast.weather[0].description}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    {{forecast.temp.max | tempFilter}} High
+                    {{forecast.weather[0].description | capitalize}}
                   </div>
                 </div>
                 <hr/>
                 <div class="row">
                   <div class="col-md-12">
-                    {{forecast.temp.min | tempFilter}} Low
+                    <div class="col-md-6">
+                      {{forecast.temp.max | tempFilter}} High
+                    </div>
+                    <div class="col-md-6">
+                      {{forecast.temp.min | tempFilter}} Low
+                    </div>
                   </div>
                 </div>
               </div>
@@ -74,9 +76,14 @@
           </div>
         </div>
       </div>
+    </div>
       <div class="row">
         <div class="col-md-12">
-          <div id="weather-chart">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div id="weather-chart">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -85,6 +92,7 @@
     <script src="/app/factories/weather.factory.js"></script>
     <script src="/app/filters/date.filter.js"></script>
     <script src="/app/filters/decimal-places.filter.js"></script>
+    <script src="/app/filters/capitalize.filter.js"></script>
     <script src="/app/filters/temp.filter.js"></script>
     <script src="/app/controllers/dashboard.controller.js"></script>
   </body>
