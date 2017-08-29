@@ -1,31 +1,28 @@
-app.controller('dashboardController', ['$scope', 'weatherFactory', DashboardController]);
+angular.module('app').controller('dashboardController', ['$scope', 'weatherFactory', DashboardController]);
 
 function DashboardController ($scope, weatherFactory) {
   var dashboard = this;
   dashboard.forecast = [];
   dashboard.cityWeeklyDetails = {};
+  dashboard.forecastAvailable = false;
 
-  dashboard.init = function () {
-
-  };
+  dashboard.init = function () {};
 
   dashboard.searchWeather = function () {
-    // dashboard.forecast = weatherFactory.mockForecast.list;
-    // weeklyDetails(weatherFactory.mockForecast);
-    // setupWeatherChart(dashboard.forecast);
     weatherFactory.cityWeatherForecast(
       dashboard.city,
       7,
       function (data) {
         dashboard.forecast = data.data.list;
+        dashboard.forecastAvailable = true;
         weeklyDetails(data.data);
         setupWeatherChart(dashboard.forecast);
       },
-      function () {
-        console.log("Failure");
+      function (error) {
+        console.log("Failure: " + error);
       }
     )
-  }
+  };
 
   function weeklyDetails (forecast) {
     dashboard.cityWeeklyDetails.name = forecast.city.name;
