@@ -5,7 +5,7 @@ function WeatherFactory ($http) {
   var getCityWeatherForecast = function (city, days, success, failure) {
     $http({
       method: 'GET',
-      url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=' + days + '&appid=' + apiKey
+      url: 'https://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&units=metric&cnt=' + days + '&appid=' + apiKey
     }).then(success, failure);
   };
 
