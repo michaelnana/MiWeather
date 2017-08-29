@@ -1,0 +1,20 @@
+{
+  "name": "miweather",
+  "version": "1.0.0",
+  "description": "Architech assignment to display the forecast",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelnana/MiWeather.git"
+  },
+  "author": "Michael Nana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelnana/MiWeather/issues"
+  },
+  "homepage": "https://github.com/michaelnana/MiWeather#readme"
+}
